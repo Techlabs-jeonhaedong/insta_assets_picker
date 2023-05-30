@@ -575,7 +575,7 @@ class InstaAssetPickerBuilder extends DefaultAssetPickerBuilderDelegate {
       decoration: BoxDecoration(
         border: Border.all(color: theme.unselectedWidgetColor, width: 1),
         color: isSelected
-            ? themeColor
+            ? DesignSystem.purple100
             : theme.unselectedWidgetColor.withOpacity(.2),
         shape: BoxShape.circle,
       ),
@@ -584,7 +584,7 @@ class InstaAssetPickerBuilder extends DefaultAssetPickerBuilderDelegate {
           duration: duration,
           reverseDuration: duration,
           child: isSelected
-              ? Text((indexSelected + 1).toString())
+              ? Text((indexSelected + 1).toString(),style: TextStyle(color:Colors.white))
               : const SizedBox.shrink(),
         ),
       ),
