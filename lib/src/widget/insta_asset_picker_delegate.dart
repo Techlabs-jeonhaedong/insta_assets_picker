@@ -5,6 +5,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:insta_assets_picker/insta_assets_picker.dart';
+import 'package:insta_assets_picker/src/design_system.dart';
 import 'package:insta_assets_picker/src/insta_assets_crop_controller.dart';
 import 'package:insta_assets_picker/src/widget/circle_icon_button.dart';
 import 'package:insta_assets_picker/src/widget/crop_viewer.dart';
@@ -289,7 +290,7 @@ class InstaAssetPickerBuilder extends DefaultAssetPickerBuilderDelegate {
                       isPermissionLimited && p.path.isAll
                           ? textDelegate.accessiblePathName
                           : p.path.name,
-                      style: theme.textTheme.bodyLarge?.copyWith(fontSize: 16),
+                      style: TextStyle(color:Colors.black, fontSize: 16),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -303,10 +304,10 @@ class InstaAssetPickerBuilder extends DefaultAssetPickerBuilderDelegate {
                 angle: isSwitchingPath ? math.pi : 0,
                 child: w,
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.keyboard_arrow_down,
                 size: 20,
-                color: theme.iconTheme.color,
+                color: Colors.black,
               ),
             ),
           ),
@@ -338,10 +339,7 @@ class InstaAssetPickerBuilder extends DefaultAssetPickerBuilderDelegate {
                 : null,
             child: isLoaded
                 ? Text(
-                    p.isSelectedNotEmpty && !isSingleAssetMode
-                        ? '${textDelegate.confirm}'
-                            ' (${p.selectedAssets.length}/${p.maxAssets})'
-                        : textDelegate.confirm,
+                    "확인"
                   )
                 : _buildLoader(context, 10),
           );
@@ -434,7 +432,7 @@ class InstaAssetPickerBuilder extends DefaultAssetPickerBuilderDelegate {
                         title: title != null
                             ? Text(
                                 title!,
-                                style: theme.appBarTheme.titleTextStyle,
+                                style: TextStyle(color: DesignSystem.purple50),
                               )
                             : null,
                         leading: backButton(context),
@@ -445,7 +443,9 @@ class InstaAssetPickerBuilder extends DefaultAssetPickerBuilderDelegate {
                           color: pickerTheme?.canvasColor,
                         ),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            
                             Listener(
                               onPointerDown: (_) {
                                 _expandCropView();
@@ -475,25 +475,25 @@ class InstaAssetPickerBuilder extends DefaultAssetPickerBuilderDelegate {
                                 theme: pickerTheme,
                               ),
                             ),
-                            SizedBox(
-                              height: _kPathSelectorRowHeight,
-                              width: MediaQuery.of(context).size.width,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  pathEntitySelector(context),
-                                  CircleIconButton(
-                                    onTap: unSelectAll,
-                                    theme: pickerTheme,
-                                    icon: const Icon(
-                                      Icons.layers_clear_sharp,
-                                      size: 18,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                                   pathEntitySelector(context),
+                            // SizedBox(
+                            //   height: _kPathSelectorRowHeight,
+                            //   width: MediaQuery.of(context).size.width,
+                            //   child: Row(
+                            //     mainAxisAlignment:
+                            //         MainAxisAlignment.spaceBetween,
+                            //     children: [
+                            //       CircleIconButton(
+                            //         onTap: unSelectAll,
+                            //         theme: pickerTheme,
+                            //         icon: const Icon(
+                            //           Icons.layers_clear_sharp,
+                            //           size: 18,
+                            //         ),
+                            //       ),
+                            //     ],
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),
